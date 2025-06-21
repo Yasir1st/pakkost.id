@@ -7,6 +7,20 @@
                 <h3>Buat Akun Baru</h3>
             </div>
             <div class="card-body">
+                <?php
+                // Cek apakah ada parameter 'error' di URL
+                if (isset($_GET['error'])) {
+                    $error_msg = '';
+                    if ($_GET['error'] == 'duplicate') {
+                        $error_msg = 'Registrasi gagal. Username atau Email sudah terdaftar.';
+                    } else {
+                        // Pesan error umum jika masalahnya bukan duplikat
+                        $error_msg = 'Terjadi kesalahan pada sistem. Silakan coba lagi.';
+                    }
+                    // Tampilkan pesan dalam bentuk alert Bootstrap
+                    echo '<div class="alert alert-danger">' . htmlspecialchars($error_msg) . '</div>';
+                }
+                ?>
                 <form action="/klp1/auth/proses_register.php" method="POST">
                     <div class="mb-3">
                         <label for="full_name" class="form-label">Nama Lengkap</label>

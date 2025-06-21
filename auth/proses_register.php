@@ -26,12 +26,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         header("Location: /klp1/login.php?status=reg_success");
         exit();
     } else {
-        // Cek jika username atau email sudah ada
-        if ($conn->errno == 1062) {
-             die("Registrasi gagal: Username atau Email sudah terdaftar.");
+        // Jika gagal, cek kode error dari MySQL
+        if ($conn->errno == 1062) { // 1062 adalah kode untuk duplicate entry
+            // Arahkan kembali ke halaman register dengan pesan error spesifik
+            header("Location: /klp1/register.php?error=duplicate");
         } else {
-             die("Registrasi gagal: " . $stmt->error);
+            // Untuk error database lainnya
+            header("Location: /klp1/register.php?error=db_error");
         }
+        exit(); // Pastikan untuk selalu exit setelah menggunakan header()
     }
 
     $stmt->close();

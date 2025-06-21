@@ -1,4 +1,5 @@
 <?php
+mysqli_report(MYSQLI_REPORT_ERROR);
 // Pengaturan koneksi database
 $host = 'localhost';
 $db_user = 'root';
