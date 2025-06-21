@@ -8,16 +8,18 @@ if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
 }
 $kost_id = (int)$_GET['id'];
 
-// Ambil data kost yang akan diedit untuk memastikan kepemilikan
-$stmt_check = $conn->prepare("SELECT * FROM kosts WHERE id = ? AND user_id = ?");
-$stmt_check->bind_param("ii", $kost_id, $pemilik_id);
+// Ambil data kost yang akan diedit
+$stmt_check = $conn->prepare("SELECT * FROM kosts WHERE id = ?");
+$stmt_check->bind_param("i", $kost_id);
 $stmt_check->execute();
 $result_check = $stmt_check->get_result();
-if ($result_check->num_rows === 0) {
-    die("Akses ditolak. Anda tidak memiliki hak untuk mengedit kost ini atau kost tidak ditemukan.");
-}
+if ($result_check->num_rows === 0) { die("Kost tidak ditemukan."); }
+
 $kost = $result_check->fetch_assoc();
-$stmt_check->close();
+// Keamanan: Pastikan yang akses adalah admin atau pemilik asli
+if ($_SESSION['role'] !== 'admin' && $kost['user_id'] != $_SESSION['user_id']) {
+    die("Akses ditolak. Anda tidak memiliki hak untuk mengedit kost ini.");
+}
 
 // --- LOGIKA PEMROSESAN FORM UPDATE ---
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
