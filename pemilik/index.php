@@ -91,7 +91,24 @@ if (isset($_GET['status'])) {
                             <tr>
                                 <td><?php echo htmlspecialchars($kost['nama_kost']); ?></td>
                                 <td><?php echo htmlspecialchars($kost['alamat']); ?></td>
-                                <td><span class="badge bg-info text-dark"><?php echo ucfirst($kost['tipe_kost']); ?></span></td>
+                                <td>
+                                    <?php
+                                    // Logika untuk menentukan warna badge tipe kost
+                                    $tipe_kost = $kost['tipe_kost'];
+                                    $badge_class = '';
+                                    $text_class = 'text-white';
+
+                                    if ($tipe_kost == 'putra') {
+                                        $badge_class = 'bg-info';
+                                        $text_class = 'text-dark';
+                                    } elseif ($tipe_kost == 'putri') {
+                                        $badge_class = 'bg-pink';
+                                    } elseif ($tipe_kost == 'campur') {
+                                        $badge_class = 'bg-success';
+                                    }
+                                    ?>
+                                    <span class="badge <?php echo $badge_class; ?> <?php echo $text_class; ?>"><?php echo ucfirst($tipe_kost); ?></span>
+                                </td>
                                 <td>Rp <?php echo number_format($kost['harga_bulanan']); ?></td>
                                 <td><b><?php echo $kost['kamar_tersedia']; ?></b> kamar</td>
                                 <td>

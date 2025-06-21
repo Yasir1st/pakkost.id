@@ -75,7 +75,22 @@
             <div class="card-body">
                 <h5 class="card-title"><?php echo htmlspecialchars($kost['nama_kost']); ?></h5>
                 <p class="card-text text-muted"><small><?php echo htmlspecialchars($kost['alamat']); ?>, Kel. <?php echo htmlspecialchars($kost['kelurahan']); ?></small></p>
-                <span class="badge bg-info text-dark mb-2"><?php echo ucfirst($kost['tipe_kost']); ?></span>
+                <?php
+                // Logika untuk menentukan warna badge tipe kost
+                $tipe_kost = $kost['tipe_kost'];
+                $badge_class = '';
+                $text_class = 'text-white'; // Default teks putih untuk kontras
+
+                if ($tipe_kost == 'putra') {
+                    $badge_class = 'bg-info';
+                    $text_class = 'text-dark'; // Teks gelap untuk warna biru muda
+                } elseif ($tipe_kost == 'putri') {
+                    $badge_class = 'bg-pink';
+                } elseif ($tipe_kost == 'campur') {
+                    $badge_class = 'bg-success';
+                }
+                ?>
+                <span class="badge <?php echo $badge_class; ?> <?php echo $text_class; ?> mb-2"><?php echo ucfirst($tipe_kost); ?></span>
                 <p class="card-text fw-bold fs-5">Rp <?php echo number_format($kost['harga_bulanan'], 0, ',', '.'); ?> / bulan</p>
                 <a href="detail_kost.php?id=<?php echo $kost['id']; ?>" class="btn btn-outline-primary stretched-link">Lihat Detail</a>
             </div>

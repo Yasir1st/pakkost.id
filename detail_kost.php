@@ -111,7 +111,22 @@ $reviews = $stmt_reviews->get_result();
         </div>
 
         <h1><?php echo htmlspecialchars($kost['nama_kost']); ?></h1>
-        <p class="text-muted"><span class="badge bg-info text-dark"><?php echo ucfirst($kost['tipe_kost']); ?></span> - <?php echo htmlspecialchars($kost['alamat']); ?></p>
+        <?php
+        // Logika untuk menentukan warna badge tipe kost
+        $tipe_kost = $kost['tipe_kost'];
+        $badge_class = '';
+        $text_class = 'text-white';
+
+        if ($tipe_kost == 'putra') {
+            $badge_class = 'bg-info';
+            $text_class = 'text-dark';
+        } elseif ($tipe_kost == 'putri') {
+            $badge_class = 'bg-pink';
+        } elseif ($tipe_kost == 'campur') {
+            $badge_class = 'bg-success';
+        }
+        ?>
+        <p class="text-muted"><span class="badge <?php echo $badge_class; ?> <?php echo $text_class; ?>"><?php echo ucfirst($tipe_kost); ?></span> - <?php echo htmlspecialchars($kost['alamat']); ?></p>
 
         <hr>
 

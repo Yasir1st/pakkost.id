@@ -5,3 +5,33 @@
     /* Beri jarak dari atas seukuran tinggi header + sedikit margin */
     top: 80px; 
 }
+
+/* Penyesuaian Skema Warna Utama (Color Way) - MAROON */
+:root {
+  /* Kode HEX dan RGB untuk warna Maroon */
+  --bs-primary: #800000;
+  --bs-primary-rgb: 128, 0, 0;
+}
+
+/* Kode ini untuk memastikan warna teks di atas header tetap kontras (putih).
+  Dan juga menyesuaikan warna hover pada tombol agar serasi.
+*/
+.btn-primary {
+  --bs-btn-color: #fff;
+  --bs-btn-bg: var(--bs-primary);
+  --bs-btn-border-color: var(--bs-primary);
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: #660000; /* Warna maroon sedikit lebih gelap untuk hover */
+  --bs-btn-hover-border-color: #5c0000;
+}
+
+.navbar-dark {
+    --bs-navbar-color: rgba(255, 255, 255, 0.75);
+    --bs-navbar-hover-color: rgba(255, 255, 255, 0.9);
+    --bs-navbar-active-color: #fff;
+}
+
+/* Custom Badge Color untuk Kost Putri */
+.bg-pink {
+    background-color: #d63384 !important; /* Kode warna pink dari Bootstrap */
+}
