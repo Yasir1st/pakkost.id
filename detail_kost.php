@@ -142,7 +142,7 @@ $reviews = $stmt_reviews->get_result();
     </div>
 
     <div class="col-lg-4">
-        <div class="card sticky-top" style="top: 20px;">
+        <div class="card sticky-top" style="top: 80px;">
             <div class="card-body">
                 <h5 class="card-title">Harga Sewa</h5>
                 <ul class="list-group list-group-flush">

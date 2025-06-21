@@ -27,7 +27,7 @@ require_once __DIR__ . '/../config/database.php';
 </head>
 <body class="d-flex flex-column min-vh-100">
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm sticky-top">
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm sticky-top" style="z-index: 1031;">
     <div class="container">
         <a class="navbar-brand fw-bold" href="/klp1/index.php">
             <i class="fas fa-home me-2"></i>PAKKOST

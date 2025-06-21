@@ -1,0 +1,7 @@
+/* Perbaikan untuk elemen sticky-top di halaman detail
+   agar tidak menimpa header yang juga sticky.
+*/
+.detail-sticky-card {
+    /* Beri jarak dari atas seukuran tinggi header + sedikit margin */
+    top: 80px; 
+}
